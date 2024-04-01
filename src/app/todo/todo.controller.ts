@@ -24,13 +24,17 @@ export class TodoController {
     
     @Put(':id')
     async update(@Param('id') id:number, @Body() body) {
-
         return await this.todoService.update(id, body);
     }
     
     @Delete(':id')
     @HttpCode(HttpStatus.NO_CONTENT)
     async destroy(@Param('id') id:number) {
-        await this.todoService.remove(id);
+        try {
+            await this.todoService.remove(id);
+        } catch (error) {
+            console.error('Erro ao excluir o todo:', error);
+            throw new Error('Erro ao excluir o todo');
+        }
     }
 }
