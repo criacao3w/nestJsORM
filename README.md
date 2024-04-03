@@ -32,6 +32,13 @@
 $ npm install
 ```
 
+## Database Docker Maria DB
+Don't forget to create the database in the docker container bank [localhost]
+
+```bash
+$ docker run --name todo-database -p 3306:3306 -e MARIADB_ROOT_PASSWORD=123 -d mariadb:latest
+```
+
 ## Running the app
 
 ```bash
